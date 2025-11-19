@@ -30,18 +30,10 @@ type FortiHTTP interface {
 	Get(path, query string, obj any) error
 }
 
-func NewFortiClient(ctx context.Context, tgt url.URL, hc *http.Client, aConfig config.FortiExporterConfig) (FortiHTTP, error) {
-	target := tgt.String()
-	if tgt.Scheme == "" {
-		tgt.Scheme = "https"
-		target = tgt.Host
-	}
+func NewFortiClient(ctx context.Context, target string, tgt url.URL, hc *http.Client, aConfig config.FortiExporterConfig) (FortiHTTP, error) {
 	auth, ok := aConfig.AuthKeys[config.Target(target)]
 	if !ok {
-		return nil, fmt.Errorf("no API authentication registered for %q", tgt.String())
-	}
-	if tgt.Scheme == "" {
-		tgt.Scheme = "https"
+		return nil, fmt.Errorf("no API authentication registered for %q (%q)", target, tgt.String())
 	}
 	if auth.Token != "" {
 		if tgt.Scheme != "https" {

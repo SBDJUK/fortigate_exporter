@@ -101,6 +101,12 @@ Example:
       - System/LinkMonitor
       # Inlcude probes with name starting with: System and Firewall
       # Then exclude probe: System/LinkMonitor
+"another-fortigate":
+  token: api-key-goes-here
+  url: https://another-fortigatge.mydomain/
+  probes:
+    exclude:
+      - Wifi
 ```
 
 Special cases:

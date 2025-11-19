@@ -62,7 +62,11 @@ type probeDetailedFunc struct {
 }
 
 func (p *Collector) Probe(ctx context.Context, target map[string]string, hc *http.Client, savedConfig config.FortiExporterConfig) (bool, error) {
-	tgt, err := url.Parse(target["target"])
+	tgturl := target["target"]
+	if savedConfig.AuthKeys[config.Target(target["target"])].URL != "" {
+		tgturl = savedConfig.AuthKeys[config.Target(target["target"])].URL
+	}
+	tgt, err := url.Parse(tgturl)
 	if err != nil {
 		return false, fmt.Errorf("url.Parse failed: %v", err)
 	}
@@ -89,7 +93,7 @@ func (p *Collector) Probe(ctx context.Context, target map[string]string, hc *htt
 		}
 	}
 
-	c, err := fortiHTTP.NewFortiClient(ctx, u, hc, savedConfig)
+	c, err := fortiHTTP.NewFortiClient(ctx, target["target"], u, hc, savedConfig)
 	if err != nil {
 		return false, err
 	}

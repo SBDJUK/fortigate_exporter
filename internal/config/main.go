@@ -58,6 +58,7 @@ type Probes struct {
 }
 
 type TargetAuth struct {
+	URL    string
 	Token  Token
 	Probes Probes
 }
