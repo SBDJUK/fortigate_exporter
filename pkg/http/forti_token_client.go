@@ -71,6 +71,8 @@ func (c *fortiTokenClient) Get(path, query string, obj any) error {
 		return err
 	}
 
+	//log.Printf("fortiTokenClient.Get: starting request %q", u.String())
+
 	req = req.WithContext(c.ctx)
 	resp, err := c.hc.Do(req)
 	if err != nil {
