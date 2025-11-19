@@ -194,6 +194,8 @@ To improve security, limit permissions to required ones only (least privilege pr
 |System/Status                | *any*              |api/v2/monitor/system/status |
 |System/Time/Clock            | sysgrp.cfg         |api/v2/monitor/system/time |
 |System/System/VDOMResource   | sysgrp.cfg         |api/v2/monitor/system/vdom-resource |
+|SwitchController/ManageSwitch/PortStats |         |api/v2/monitor/switch-controller/managed-switch?port_stats=true replaced from fortiOS 7.0 to api/v2/monitor/switch-controller/managed-switch/status and managed-switch/port-stats|
+|SwitchController/ManageSwitch/Health |            |api/v2/monitor/switch-controller/managed-switch/health replace from fortiOS 7.6 to api/v2/monitor/switch-controller/managed-switch/health-status |
 |User/Fsso                    | authgrp            |api/v2/monitor/user/fsso |
 |VPN/IPSec                    | vpngrp             |api/v2/monitor/vpn/ipsec |
 |VPN/Ssl/Connections          | vpngrp             |api/v2/monitor/vpn/ssl |
