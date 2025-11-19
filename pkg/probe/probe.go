@@ -128,14 +128,8 @@ func (p *Collector) Probe(ctx context.Context, target map[string]string, hc *htt
 		VersionMinor: minor,
 	}
 
-	// If we didn't supply a scheme, don't look for it in the config either
-	t := u.String()
-	if tgt.Scheme == "" {
-		t = tgt.Host
-	}
-
-	includedProbes := savedConfig.AuthKeys[config.Target(t)].Probes.Include
-	excludedProbes := savedConfig.AuthKeys[config.Target(t)].Probes.Exclude
+	includedProbes := savedConfig.AuthKeys[config.Target(target["target"])].Probes.Include
+	excludedProbes := savedConfig.AuthKeys[config.Target(target["target"])].Probes.Exclude
 
 	// TODO: Make parallel
 	success := true

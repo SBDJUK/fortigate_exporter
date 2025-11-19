@@ -7,6 +7,9 @@
 fortigate_exporter
 *.exe
 
+# Secrets
+fortigate-key.yaml
+
 # coverage
 cover.out
 coverage.html
