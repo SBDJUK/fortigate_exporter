@@ -67,7 +67,10 @@ func (p *Collector) Probe(ctx context.Context, target map[string]string, hc *htt
 		return false, fmt.Errorf("url.Parse failed: %v", err)
 	}
 
-	if tgt.Scheme != "https" && tgt.Scheme != "http" {
+	// If no scheme and no host are supplied, use the supplied target instance verbatim
+	if tgt.Scheme == "" && tgt.Host == "" {
+		tgt.Host = target["target"]
+	} else if tgt.Scheme != "https" && tgt.Scheme != "http" {
 		return false, fmt.Errorf("unsupported scheme %q", tgt.Scheme)
 	}
 
@@ -121,8 +124,14 @@ func (p *Collector) Probe(ctx context.Context, target map[string]string, hc *htt
 		VersionMinor: minor,
 	}
 
-	includedProbes := savedConfig.AuthKeys[config.Target(u.String())].Probes.Include
-	excludedProbes := savedConfig.AuthKeys[config.Target(u.String())].Probes.Exclude
+	// If we didn't supply a scheme, don't look for it in the config either
+	t := u.String()
+	if tgt.Scheme == "" {
+		t = tgt.Host
+	}
+
+	includedProbes := savedConfig.AuthKeys[config.Target(t)].Probes.Include
+	excludedProbes := savedConfig.AuthKeys[config.Target(t)].Probes.Exclude
 
 	// TODO: Make parallel
 	success := true
