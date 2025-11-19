@@ -1,17 +1,8 @@
 # fortigate_exporter
 
-![Go](https://github.com/prometheus-community/fortigate_exporter/workflows/Go/badge.svg)
-![Docker](https://github.com/prometheus-community/fortigate_exporter/workflows/Docker/badge.svg)
-[![Docker Repository on Quay](https://quay.io/repository/prometheuscommunity/fortigate_exporter/status "Docker Repository on Quay")](https://quay.io/repository/prometheuscommunity/fortigate_exporter)
-[![Matrix](https://img.shields.io/matrix/fortigate_exporter:matrix.org)](https://matrix.to/#/#fortigate_exporter:matrix.org)
-
 Prometheus exporter for FortiGate® firewalls.
 
----
-
-**This repository is archived due to lack of time from the maintainer, as well as lack of support from Fortinet to provide documentation. The constant fight to reverse engineer the APIs for new versions takes too much time for a few developers. Feel free to fork this project and continue the work!**
-
----
+**NOTE:** This is a fork of the original fortigate_exporter with some small changes
 
 **NOTE:** This is not an official Fortinet product, it is developed fully independently by professionals and hobbyists alike.
 
